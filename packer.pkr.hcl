@@ -1,5 +1,5 @@
 
-source "virtualbox-iso" "ubuntu_22_04" {
+source "virtualbox-iso" "ubuntu_22_04_2" {
     boot_command            = [
         "<wait>e<down><down><down><end>",
         " autoinstall net.ifnames=0 biosdevname=0 systemd.unified_cgroup_hierarchy=0",
@@ -22,22 +22,8 @@ source "virtualbox-iso" "ubuntu_22_04" {
 }
 
 build {
-    sources = ["source.virtualbox-iso.ubuntu_22_04"]
+    sources = ["source.virtualbox-iso.ubuntu_22_04_2"]
 
-    // post-processor "shell-local" {
-    //     inline = [
-    //         "set -eu",
-    //         "export _IMAGE=\"$(ls -1d output-ubuntu_22_04/packer-ubuntu_22_04-*.vmdk)\"",
-    //         "sudo qemu-img convert -f vmdk -O qcow2 \"$_IMAGE\" \"$_IMAGE.convert\"",
-    //         "sudo rm -rf \"$_IMAGE\"",
-    //         "sudo chmod a+r /boot/vmlinuz*",
-    //         "sudo virt-customize -a \"$_IMAGE.convert\" --delete \"/var/lib/*/random-seed\" --delete \"/var/lib/wicked/*\" --firstboot-command \"/usr/local/bin/virt-sysprep-firstboot.sh\"",
-    //         "sudo virt-sysprep --operations defaults,-ssh-userdir,-customize -a \"$_IMAGE.convert\"",
-    //         "sudo virt-sparsify --in-place \"$_IMAGE.convert\"",
-    //         "sudo qemu-img convert -f qcow2 -O vmdk \"$_IMAGE.convert\" \"$_IMAGE\"",
-    //         "sudo rm -rf \"$_IMAGE.convert\""
-    //     ]
-    // }
     post-processor "vagrant" {
         keep_input_artifact = true
         compression_level   = 9
