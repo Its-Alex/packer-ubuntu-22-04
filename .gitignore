@@ -2,6 +2,7 @@
 packer_cache/
 output*/
 *.txt
+.vagrant/
 
 # Crash log
 crash.log
