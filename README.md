@@ -1,6 +1,6 @@
 # Packer ubuntu 22.04.2
 
-This repo aims to provide an example of a packer build for `ubuntu-20.04.2`.
+This repo aims to provide an example of a packer build for `ubuntu-22.04.2`.
 
 ## Requirements
 
